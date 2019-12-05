@@ -1,0 +1,6 @@
+include *.txt
+include README.md
+
+recursive-include nbb *.py
+include versioneer.py
+include nbb/_version.py
