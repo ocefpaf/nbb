@@ -23,9 +23,8 @@ def test__nbcell_isort(cell):
         """
     import sys
 
-    from nbb import _nbcell_isort
-
     import numpy as np
+    from nbb import _nbcell_isort
 
     print('This is just a test.')
     """
@@ -53,9 +52,8 @@ def test__beautify_cell(cell):
         """
     import sys
 
-    from nbb import _nbcell_isort
-
     import numpy as np
+    from nbb import _nbcell_isort
 
     print("This is just a test.")
     """
