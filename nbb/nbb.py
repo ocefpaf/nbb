@@ -34,7 +34,7 @@ def _beautify_cell(cell_source: str) -> str:
         if line.startswith(skip):
             return cell_source
 
-    # FIXME: hack way to handle some line and cell magics
+    # FIXME: hack way to handle some line magics, cell magics, and system calls.
     cell_source = "\n".join(
         [
             line.replace("%", "# %", 1).replace("!", "# !", 1)
