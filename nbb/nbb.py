@@ -10,7 +10,7 @@ from isort import SortImports
 # Incomplete list of magics we handle.
 skip = (r"%%R", r"%load_ext", r"%%writefile")
 comment = (r"%matplotlib inline", r"%time", r"%timeit", r"!")
-mod_comment = tuple([f"# {comm}" for comm in comment])
+mod_comment = tuple((f"# {comm}" for comm in comment))
 
 
 log = logging.getLogger(__name__)
