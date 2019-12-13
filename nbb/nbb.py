@@ -21,9 +21,14 @@ def _nbcell_isort(cell_source: str) -> str:
 
 
 def _nbcell_black(cell_source: str) -> str:
-    return black.format_str(
-        cell_source, mode=black.FileMode()
-    ).strip()  # we don't want a new line at the enf of the notebook cell
+    try:
+        cell_source = black.format_str(
+            cell_source, mode=black.FileMode()
+        ).strip()  # we don't want a new line at the enf of the notebook cell
+    except black.InvalidInput as e:
+        log.warning(f"Could not process cell:\n\n{cell_source}")
+    return cell_source
+
 
 
 def _beautify_cell(cell_source: str) -> str:
