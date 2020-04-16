@@ -2,10 +2,16 @@ import logging
 import pathlib
 import sys
 
+from typing import Optional, Union
+
 import black
 import easyargs
 import nbformat
+
 from isort import SortImports
+
+
+PathLike = Union[str, pathlib.Path]
 
 # Incomplete list of magics we handle.
 skip = (r"%%R", r"%load_ext", r"%%writefile")
@@ -24,11 +30,10 @@ def _nbcell_black(cell_source: str) -> str:
     try:
         cell_source = black.format_str(
             cell_source, mode=black.FileMode()
-        ).strip()  # we don't want a new line at the enf of the notebook cell
-    except black.InvalidInput as e:
+        ).strip()  # we don't want a new line at the end of the notebook cell
+    except black.InvalidInput:
         log.warning(f"Could not process cell:\n\n{cell_source}")
     return cell_source
-
 
 
 def _beautify_cell(cell_source: str) -> str:
@@ -62,7 +67,7 @@ def _beautify_cell(cell_source: str) -> str:
     return cell_source
 
 
-def _load_nb(fname: pathlib.Path = None):
+def _load_nb(fname: Optional[PathLike] = None) -> PathLike:
     if fname is None:
         fname = sys.argv[1]
     return pathlib.Path(fname)
@@ -72,9 +77,7 @@ def _nbb(fname: pathlib.Path) -> None:
     notebook = nbformat.reads(fname.read_text(), as_version=4)
     kernelspec = notebook["metadata"]["kernelspec"]
     if not kernelspec.get("language") == "python":
-        log.warning(
-            (f"Ignoring {fname} with non python kernelspec {kernelspec}.\n")
-        )
+        log.warning((f"Ignoring {fname} with non python kernelspec {kernelspec}.\n"))
         return
 
     for cell in notebook["cells"]:
