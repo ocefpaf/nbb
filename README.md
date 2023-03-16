@@ -1,20 +1,3 @@
-# `nbb`: Notebook beautifier: runs isort and black on your cells
+This project is no longer maintained.
 
-## Continuous Integration Tests
-
-| Platform  | Status                                                                                                                                            |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Linux     | [![Travis](https://img.shields.io/travis/com/ocefpaf/nbb/master.svg?label=Linux)](https://travis-ci.com/ocefpaf/nbb)                              |
-| Windows   | [![AppVeyor](https://img.shields.io/appveyor/ci/ocefpaf/nbb/master.svg?label=Windows)](https://ci.appveyor.com/project/ocefpaf/nbb/branch/master) |
-
-You can call it on a single notebook:
-
-```shell
-nbb notebook.ipynb
-```
-
-or a directory with multiple notebooks,
-
-```shell
-nbb .
-```
+Please check the awesome https://github.com/nbQA-dev/nbQA instead.
